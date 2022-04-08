@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>BloomFilter.Core</PackageId> 
+    <Version>0.0.1</Version> 
+    <Authors>Jay Thaker</Authors> 
+    <PackageTags>BloomFilter;DataStructure;BigData</PackageTags> 
+    <Description>This package contains some of the most common efficient data structure using in large scale big data solution.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="murmurhash" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="murmurhash" Version="1.0.3" />
+  </ItemGroup>
+</Project>
