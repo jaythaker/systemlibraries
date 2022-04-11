@@ -13,6 +13,7 @@ public class BloomFilter
 
     public BloomFilter(double falsePositiveProbability, uint exceptedElements)
     {
+        if (exceptedElements == 0) throw new ArgumentException(nameof(exceptedElements));
         _expectedElements = exceptedElements;
         _falsePositiveProbability = falsePositiveProbability;
         int size = (int)(-1 * (exceptedElements * Math.Log2(falsePositiveProbability) / (Math.Log2(2) * Math.Log2(2))));
@@ -22,6 +23,8 @@ public class BloomFilter
 
     public void Add(string data)
     {
+        if (string.IsNullOrWhiteSpace(data))  throw new ArgumentNullException(nameof(data));
+        
         var bitIndexes = GetHashIndexes(data);
         foreach (var index in bitIndexes)
             _bitArray.Set(index, true);
@@ -29,6 +32,8 @@ public class BloomFilter
 
     public bool IsPresent(string data)
     {
+        if (string.IsNullOrWhiteSpace(data))  throw new ArgumentNullException(nameof(data));
+        
         var bitIndexes = GetHashIndexes(data);
         var result = false;
         foreach (var index in bitIndexes)
@@ -41,6 +46,8 @@ public class BloomFilter
 
     private int[] GetHashIndexes(string data)
     {
+        if (string.IsNullOrWhiteSpace(data))  throw new ArgumentNullException(nameof(data));
+        
         var result = new int[_hashCount];
         var firstHash = Math.Abs(data.GetHashCode());
 
